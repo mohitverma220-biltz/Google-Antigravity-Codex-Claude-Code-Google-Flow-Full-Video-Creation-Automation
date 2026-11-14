@@ -1,0 +1,22 @@
+{
+  "observed_local_date": "2026-11-11",
+  "source": "Registered MCP tool metadata in this chat; input declarations are verbatim.",
+  "tools": [
+    {
+      "name": "mcp__flow_connector__flow_generate",
+      "description": "Generate images or videos on Google Flow (flow.google.com) through the user's own browser session (free, no API). flow-text-to-image, flow-image-to-image — Nano Banana Pro/2/Lite; flow-text-to-video, flow-frame-to-video, flow-ingredients-to-video — Omni Flash / Veo 3.1 Lite|Fast|Quality, 4/6/8/10s, 16:9 or 9:16 only; flow-extend-video — lengthen the Veo clip the user currently has open in Flow's scene editor, prompt = what happens next. Returns the local file paths of the downloaded media if it finishes within ~40 s; otherwise returns a job id — keep calling flow_get_job with it until the job is done. Flow generation is deliberately slow and low-concurrency (anti-bot pacing) — a long wait or a 'cooldown active' status is expected behavior, not a bug.\n\nexec tool declaration:\n```ts\ndeclare const tools: { mcp__flow_connector__flow_generate(args: {\n  aspect_ratio?: \"16:9\" | \"9:16\" | \"1:1\" | \"2:3\" | \"3:2\" | \"4:3\" | \"3:4\";\n  // video duration in seconds\n  duration?: \"4\" | \"6\" | \"8\" | \"10\";\n  // download subfolder under Chrome Downloads\n  folder?: string;\n  // image: nano-banana-pro|nano-banana-2|nano-banana-2-lite — video: omni-flash|veo-3.1-lite|veo-3.1-fast|veo-3.1-quality (quality is the expensive one)\n  image_model?: \"nano-banana-pro\" | \"nano-banana-2\" | \"nano-banana-2-lite\" | \"omni-flash\" | \"veo-3.1-lite\" | \"veo-3.1-fast\" | \"veo-3.1-quality\";\n  // absolute local paths of input images (image-to-image / frame / ingredients)\n  image_paths?: Array<string>;\n  // generation mode\n  mode: \"flow-text-to-image\" | \"flow-image-to-image\" | \"flow-text-to-video\" | \"flow-frame-to-video\" | \"flow-ingredients-to-video\" | \"flow-video-to-video\" | \"flow-create-character\" | \"flow-set-voice\" | \"flow-extend-video\" | \"flow-rename-asset\" | \"flow-upload-assets\";\n  outputs?: number;\n  // the generation prompt\n  prompt: string;\n}): Promise<CallToolResult>; };\n```"
+    },
+    {
+      "name": "mcp__flow_connector__flow_get_job",
+      "description": "Wait for a generation job (up to ~40 s per call) and return its status and files. Call it again while the job is still generating.\n\nexec tool declaration:\n```ts\ndeclare const tools: { mcp__flow_connector__flow_get_job(args: { job_id: string; }): Promise<CallToolResult>; };\n```"
+    },
+    {
+      "name": "mcp__flow_connector__flow_list_jobs",
+      "description": "List recent generation jobs with status and files.\n\nexec tool declaration:\n```ts\ndeclare const tools: { mcp__flow_connector__flow_list_jobs(args: { [key: string]: unknown; }): Promise<CallToolResult>; };\n```"
+    },
+    {
+      "name": "mcp__flow_connector__flow_status",
+      "description": "Check the bridge: is the daemon up, is the extension connected, plan usage, active jobs, and whether an anti-bot cooldown is active.\n\nexec tool declaration:\n```ts\ndeclare const tools: { mcp__flow_connector__flow_status(args: {\n  // which extension's status to check\n  site?: \"flow\";\n}): Promise<CallToolResult>; };\n```"
+    }
+  ]
+}

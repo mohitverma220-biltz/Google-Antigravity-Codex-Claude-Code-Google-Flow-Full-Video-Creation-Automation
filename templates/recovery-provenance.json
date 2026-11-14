@@ -1,0 +1,6 @@
+{
+  "existing_asset": true,
+  "source_project_url": "REPLACE with this film's recorded Flow project URL",
+  "asset_label_or_url": "REPLACE with the visible clip label or URL when available",
+  "evidence": "REPLACE with concrete agent observation or the user's actual download/source confirmation. Explain which shot it supplies. Do not infer a queue-job ID from a filename or thumbnail."
+}

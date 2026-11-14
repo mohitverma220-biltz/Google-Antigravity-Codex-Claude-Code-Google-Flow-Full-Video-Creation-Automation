@@ -1,0 +1,19 @@
+test_15_second_dry_run_has_exact_payloads_and_zero_calls (test_workflow.WorkflowAcceptance.test_15_second_dry_run_has_exact_payloads_and_zero_calls) ... ok
+test_authorization_preflight_cooldown_and_cap_stop_submission (test_workflow.WorkflowAcceptance.test_authorization_preflight_cooldown_and_cap_stop_submission) ... ok
+test_complete_mcp_download_copies_original_without_inventing_job_id (test_workflow.WorkflowAcceptance.test_complete_mcp_download_copies_original_without_inventing_job_id) ... ok
+test_crash_after_first_acceptance_before_id_never_submits_twice (test_workflow.WorkflowAcceptance.test_crash_after_first_acceptance_before_id_never_submits_twice) ... ok
+test_crash_before_send_empty_list_keeps_pending (test_workflow.WorkflowAcceptance.test_crash_before_send_empty_list_keeps_pending) ... ok
+test_limits_durations_and_quality_ingredients_are_enforced (test_workflow.WorkflowAcceptance.test_limits_durations_and_quality_ingredients_are_enforced) ... ok
+test_local_media_probe_frame_extraction_and_15_second_assembly (test_workflow.WorkflowAcceptance.test_local_media_probe_frame_extraction_and_15_second_assembly) ... ok
+test_mcp_truncated_prompt_is_not_identity_but_folder_token_is (test_workflow.WorkflowAcceptance.test_mcp_truncated_prompt_is_not_identity_but_folder_token_is) ... ok
+test_multiple_matches_leave_ambiguous_pending (test_workflow.WorkflowAcceptance.test_multiple_matches_leave_ambiguous_pending) ... ok
+test_reference_review_required_and_project_lock_serializes_writers (test_workflow.WorkflowAcceptance.test_reference_review_required_and_project_lock_serializes_writers) ... ok
+test_response_forms_and_missing_download_not_success (test_workflow.WorkflowAcceptance.test_response_forms_and_missing_download_not_success) ... ok
+test_revision_keeps_takes_and_invalidates_frame_dependent_shot (test_workflow.WorkflowAcceptance.test_revision_keeps_takes_and_invalidates_frame_dependent_shot) ... ok
+test_switching_output_within_one_take_invalidates_downstream (test_workflow.WorkflowAcceptance.test_switching_output_within_one_take_invalidates_downstream) ... ok
+test_unicode_multiline_prompt_and_windows_paths_are_exact_native_arguments (test_workflow.WorkflowAcceptance.test_unicode_multiline_prompt_and_windows_paths_are_exact_native_arguments) ... ok
+
+----------------------------------------------------------------------
+Ran 14 tests in 4.001s
+
+OK

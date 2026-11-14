@@ -1,0 +1,58 @@
+Read and comply with AGENTS.md and repository documentation. Explore the repository to understand its structure, build/test commands, conventions, and existing workflows.
+
+Your task: Create a new AI-based agentic workflow that automates a well-defined development or maintenance process in this repository. The workflow must follow GitHub Agentic Workflows conventions and Codex CLI best practices.
+
+## Requirements
+1. **Repository Exploration**
+   - Identify relevant modules, scripts, tests, and existing workflows.
+   - Summarize current behavior and constraints.
+   - Confirm how to run tests, linting, builds, and any required setup.
+
+2. **Workflow Purpose**
+   - Propose a workflow that meaningfully improves automation (e.g., code review, dependency audit, test coverage check, release prep, documentation update).
+   - Validate that the workflow is safe and feasible given repository constraints.
+
+3. **Workflow Structure**
+   - Create a Markdown workflow file in `.github/workflows/` using GitHub Agentic Workflows format.
+   - Include YAML frontmatter with:
+     - `on:` triggers
+     - `permissions:` (minimum required)
+     - `safe-outputs:` (e.g., create-issue, add-comment, create-pull-request)
+     - `engine: codex` (or copilot/ model if appropriate)
+   - Follow gh aw conventions for compilation and execution.
+
+4. **Codex Integration**
+   - Use Codex CLI conventions for repository-aware tasks, planning, editing, testing, and verification [^2^].
+   - If the workflow requires Codex execution inside GitHub Actions, use `openai/codex-action@v1` with a secure permission profile such as `:workspace` [^1^].
+   - Ensure safety-strategy defaults (drop-sudo) unless the repository requires otherwise.
+
+5. **Agent Strategy**
+   - Decide whether the workflow should use a single agent or subagents.
+   - If using subagents, define file ownership, parallel tasks, and integration order.
+
+6. **Acceptance Criteria**
+   - The workflow must:
+     - Compile successfully using `gh aw compile`.
+     - Produce deterministic output.
+     - Stop on failing tests or unsafe commands.
+     - Provide clear evidence of completion (commands run, tests passed, diffs generated).
+
+7. **Output Format**
+   - Present:
+     - The workflow plan.
+     - The generated workflow Markdown file.
+     - The compiled `.lock.yml` content.
+     - A summary of repository exploration findings.
+     - Instructions for committing and running the workflow.
+
+## Execution Environment
+Choose Local, Worktree, or Cloud based on repository needs. Prefer Worktree for isolated implementation [^2^].
+
+## Deliverables
+Produce:
+- A complete workflow file.
+- A compiled lock file.
+- A short explanation of how the workflow operates.
+- A checklist for verifying correctness.
+
+Stop immediately if any command fails, summarize the failure, and request next steps.

@@ -1,0 +1,22 @@
+{
+  "passed": false,
+  "opening": "Describe the inspected opening frame and framing.",
+  "action": "Describe playback inspection of the readable action.",
+  "ending": "Describe the inspected ending / clean cut boundary.",
+  "identity": "Check silhouette, anatomy, wardrobe, markings and color; for the cup check rim, handle, glaze streak.",
+  "motion": "Check motion through playback; still frames alone cannot establish motion quality.",
+  "continuity": "Compare with the selected reference and adjacent shot; record any mismatch.",
+  "audio": "State whether sound/dialogue was played and checked, absent, or still needs user review.",
+  "dialogue_checks": {
+    "applicable": false,
+    "expected_speaker": null,
+    "expected_first_word": null,
+    "actual_first_word_speaker": null,
+    "opening_seconds_reviewed": null,
+    "ending_seconds_reviewed": null,
+    "listener_silent": null,
+    "exact_text": null,
+    "evidence_source": null,
+    "notes": "For configured dialogue, set applicable=true after playback and replace every pending value. Use the runner-derived expected first word; actual_first_word_speaker must equal dialogue.speaker; listener_silent and exact_text must be true. Review first 1-2 seconds, complete line and last second (minimum recorded durations: opening 1.0 s, ending 0.5 s). evidence_source must be agent_playback or user_playback. Replace this instruction with concrete observations, timestamps and any exact scoped user response. A listener saying any opening word fails. For non-dialogue, leave applicable=false and explain why. Stills/audio presence alone cannot pass these checks."
+  }
+}

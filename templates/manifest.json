@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "slug": "replace-me",
+  "title": "Untitled film",
+  "brief": {
+    "audience": "",
+    "purpose": "",
+    "platform": "",
+    "visual_style": "",
+    "subject": "",
+    "required_beats": [],
+    "audio_or_dialogue": "",
+    "supplied_assets": [],
+    "assumptions": []
+  },
+  "delivery": {"aspect_ratio": "9:16", "runtime_seconds": 8, "audio_required": false},
+  "authorization": {"produce": false, "assemble": false, "request": "", "caps": {"image": 1, "video": 2}, "additional_spending": false},
+  "flow_project": {"url": null, "id": null, "browser": "edge"},
+  "units": [
+    {
+      "id": "S01",
+      "scene": "SC01",
+      "purpose": "Replace with one story beat",
+      "screen_seconds": 8,
+      "edit": {"in": 0, "out": 8},
+      "start_state": "",
+      "end_state": "",
+      "framing": "",
+      "action": "",
+      "camera": "",
+      "audio_cue": "",
+      "dialogue": null,
+      "references": [],
+      "depends_on": [],
+      "acceptance": [],
+      "prompt": "Replace with a concrete shot prompt before production.",
+      "settings": {"mode": "flow-text-to-video", "model": "veo-3.1-fast", "aspect_ratio": "9:16", "duration": 8, "resolution": "720p", "outputs": 1},
+      "selected_take": null
+    }
+  ],
+  "takes": []
+}

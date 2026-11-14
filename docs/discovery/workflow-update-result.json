@@ -1,0 +1,12 @@
+{
+  "date": "2026-11-12",
+  "tests_run": 48,
+  "failures": 0,
+  "errors": 0,
+  "skips": 0,
+  "elapsed_seconds": 11.583,
+  "real_flow_submissions": 0,
+  "real_bridge_cli_access": "blocked by test harness",
+  "temporary_files_root": "C:\\Users\\Mohit Verma\\Downloads\\AI Video Gen_GFlow_Codex\\tests\\.tmp",
+  "completed_reel_sha256_matches": true
+}

@@ -1,0 +1,55 @@
+{
+  "observed_local_date": "2026-11-11",
+  "timezone": "Asia/Calcutta",
+  "command": "python -m unittest discover -s tests -v",
+  "exit_code": 0,
+  "tests": 14,
+  "passed": 14,
+  "failed": 0,
+  "skipped": 0,
+  "real_generation_submissions": 0,
+  "final_connector_used_today": 0,
+  "final_connector_recent_jobs": "no jobs yet",
+  "dry_run": {
+    "image_outputs": 1,
+    "video_outputs": 2,
+    "planned_variants": 0,
+    "generated_video_seconds": 16,
+    "edit_seconds": 15,
+    "proposed_caps": {
+      "image": 1,
+      "video": 3
+    }
+  },
+  "interruption_test": {
+    "backend": "in-memory fake connector only",
+    "unit": "A01",
+    "take": "A01_T01",
+    "accepted_job": "mock-job-001",
+    "interruption": "after first acceptance, before recording returned job ID",
+    "initial_disk_state": "submission_pending; job_id null",
+    "recovery": "matched full job mode, prompt, settings and unique downloadSubfolder",
+    "blocked_duplicate_preparations": 3,
+    "total_fake_submission_calls": 1
+  },
+  "local_media_test": {
+    "source": "synthetic FFmpeg color clips in a temporary directory",
+    "flow_calls": 0,
+    "checks": [
+      "full decode",
+      "720x1280 orientation",
+      "opening/action/ending previews",
+      "frame extraction at 7.000 seconds from S01_T01",
+      "7 + 8 second assembly",
+      "export probe and full decode"
+    ],
+    "retained_production_media": false
+  },
+  "live_project_state": "Planning only: no Flow project selected, no cup reference generated and no real take selected.",
+  "limitations": [
+    "No live generation was exercised; this was explicitly a zero-generation build.",
+    "MCP project identity, visibility and resolution need actual Edge preflight before production.",
+    "Ambiguous submissions remain pending because the connector exposes no idempotency key.",
+    "Motion, identity and sound require actual visual/playback review during production."
+  ]
+}

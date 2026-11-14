@@ -1,0 +1,134 @@
+=== flow-auto --version ===
+1.0.14
+
+=== flow-auto modes ===
+text-to-image        prompt -> image(s)                    [grok]
+image-to-image       prompt + input image(s) -> image(s)   [grok]  --image (max 5)
+text-to-video        prompt -> video                       [grok]  --duration
+frame-to-video       prompt + start frame -> video         [grok]  --image --duration
+ingredients-to-video prompt + reference images -> video    [grok]  --image... --duration
+flow-text-to-image   prompt -> image(s)                    [flow]  --model nano-banana-pro|nano-banana-2|nano-banana-2-lite
+flow-image-to-image  prompt + input image(s) -> image(s)   [flow]  --image (max 10)
+flow-text-to-video   prompt -> video                       [flow]  --duration 4|6|8|10 --model omni-flash|veo-3.1-lite|veo-3.1-fast|veo-3.1-quality
+flow-frame-to-video  prompt + start/end frame -> video     [flow]  --image (1st=start, 2nd=end, max 2) --duration
+flow-ingredients-to-video  prompt + refs -> video          [flow]  --image/--asset (max 7 on omni-flash, 3 on Veo Lite/Fast) --duration
+flow-video-to-video  edit an existing clip -> video       [flow]  --video <file> (1 clip, 3-10s) --model omni-flash
+flow-create-character  prompt -> reusable character        [flow]  --name (no file output; reference it later with --asset <name>)
+flow-set-voice         voice for the OPEN character       [flow]  --voice --voice-style (no generation, no credits; also re-voices)
+flow-rename-asset      rename an asset in the project     [flow]  --asset "<current>" --name "<new>" (no generation, no credits)
+flow-upload-assets     bulk-import files into the project [flow]  --image a.jpg b.jpg ... (one upload for the lot, no generation, no credits)
+flow-extend-video    lengthen the clip open in the editor  [flow]  --prompt (what happens next) --extend <n> / --step <beat...>
+
+note: flow video only offers 16:9 / 9:16, and veo-3.1-quality is the expensive one.
+note: flow-extend-video is Veo-only and works on the clip currently open at /project/<id>/edit/<clip>.
+
+=== flow-auto generate create --help ===
+Usage: flow-auto generate create [options] <mode>
+
+submit a generation job (mode: see `flow-auto modes`)
+
+Options:
+  --prompt <text>          prompt text (or pipe via stdin)
+  --image <path...>        input image file(s)
+  --video <path...>        flow-video-to-video: source clip(s) to edit. Same
+                           upload path as --image — Flow attaches a video
+                           exactly like a reference image — this flag exists so
+                           the command reads honestly.
+  --asset <name...>        flow: reference asset(s) already in the project's +
+                           panel, by name
+  --character <name...>    flow: cast character(s) by name — free of the
+                           reference cap, works on every flow mode
+  --aspect-ratio <ratio>   16:9, 9:16, 1:1, 2:3, 3:2 (grok) or 4:3, 3:4 (flow)
+                           (default: "16:9")
+  --duration <s>           video duration — grok: 6, 10, 15 — flow omni-flash:
+                           4, 6, 8, 10 (veo is fixed at 8s)
+  --resolution <r>         video resolution — flow: 360p or 720p. Flow remembers
+                           this per account, so without it a run inherits
+                           whatever was last clicked
+  --model <m>              grok: quality|speed — flow image:
+                           nano-banana-pro|nano-banana-2|nano-banana-2-lite —
+                           flow video:
+                           omni-flash|veo-3.1-lite|veo-3.1-fast|veo-3.1-quality
+  --outputs <n>            outputs per prompt (default: "1")
+  --new-project            flow: start this batch in a brand-new Flow project
+  --batch <n>              flow: outputs submitted back-to-back before any are
+                           watched (default 4) — the main speed control
+  --speed <1-6>            flow: how hard to push. 1 safest, 5 fastest — sets
+                           BOTH the gap between generations and between batches.
+                           Higher means more refusals; it is the user's own
+                           Google account taking that risk. The extension's Safe
+                           mode clamps this to whatever they chose there.
+  --delay <range>          flow: seconds between finished batches, e.g. 10-15 or
+                           0 (default 10-15). Slowed automatically after an
+                           anti-bot strike
+  --image-delay <range>    flow: seconds between the individual generations
+                           inside one batch, e.g. 2-5 or 0. Same format as
+                           --delay; overrides --speed for that gap
+  --extend <n>             auto-extend a video N times (chains +6s/+10s)
+                           (default: "0")
+  --extend-prompt <text>   prompt used for each extension
+  --step <text...>         storyboard beats — one prompt per extension, in order
+                           (overrides --extend/--prompt)
+  --folder <name>          download subfolder (default: "flow-auto")
+  --index <n>              1-based position of this prompt in the batch — fixes
+                           the file number so a failed prompt leaves a gap
+                           instead of the next one taking its number
+  --name <text>            flow-create-character: name to save the character
+                           under (also how you reference it later);
+                           flow-rename-asset: the new name
+  --character-info <text>  flow-create-character: personality/quirks the Flow
+                           agent reads
+  --voice <name>           flow-create-character: preset voice to attach, by
+                           name (e.g. Algenib)
+  --voice-style <text>     flow-create-character: how the voice should sound
+                           (needs --voice)
+  --voice-name <text>      flow-create-character: save the customised voice
+                           under this name (default: "<preset> Custom")
+  --body <text>            flow-create-character: description for the
+                           multi-angle Create Body sheet
+  --wait                   block until the job finishes and print file paths
+  --wait-timeout <min>     wait timeout in minutes (default: "15")
+  --json                   machine-readable output
+  -h, --help               display help for command
+
+=== flow-auto generate list --help ===
+Usage: flow-auto generate list [options]
+
+list recent jobs
+
+Options:
+  --json        machine-readable output
+  --failed      only the prompts that failed, with their number and reason
+  --all         with --failed: every failure ever recorded, not just this run
+  --run <name>  with --failed: report a recorded run by name, exactly
+  --limit <n>   how many recent jobs to show (default: "20")
+  -h, --help    display help for command
+
+=== flow-auto generate get --help ===
+Usage: flow-auto generate get [options] <id>
+
+show one job
+
+Options:
+  --json      machine-readable output
+  -h, --help  display help for command
+
+=== flow-auto generate wait --help ===
+Usage: flow-auto generate wait [options] <id>
+
+block until a job finishes
+
+Options:
+  --timeout <min>  timeout in minutes (default: "15")
+  --json           machine-readable output
+  -h, --help       display help for command
+
+=== flow-auto status --help ===
+Usage: flow-auto status [options]
+
+bridge + extension + plan status
+
+Options:
+  --site <site>  grok or flow (default: "grok")
+  --json         machine-readable output
+  -h, --help     display help for command

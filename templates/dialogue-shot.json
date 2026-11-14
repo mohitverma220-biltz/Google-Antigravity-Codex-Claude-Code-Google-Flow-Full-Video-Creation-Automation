@@ -1,0 +1,12 @@
+{
+  "dialogue": {
+    "speaker": "C01",
+    "speaker_visual": "The woman on screen left in the black top",
+    "listener_visuals": [
+      "C02: the man on screen right wearing glasses and a navy shirt"
+    ],
+    "text": "Yaar, pehle ek chhota tool test karte hain.",
+    "pre_roll_seconds": 0.4,
+    "end_hold_seconds": 0.6
+  }
+}
